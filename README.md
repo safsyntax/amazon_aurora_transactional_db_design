@@ -10,8 +10,7 @@ Reliable data storage and transaction handling are critical in e-commerce system
 
 - **Database Engine**: Amazon Aurora (MySQL-compatible)
 - **Cloud Platform**: AWS RDS (Relational Database Service)
-- **Languages**: SQL, Python (for database connectivity)
-- **Libraries**: `SQLAlchemy`, `PyMySQL`, `pandas`
+- **Languages**: SQL
 
 ## 🧠 Key Features
 
