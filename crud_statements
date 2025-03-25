@@ -1,0 +1,204 @@
+CRUD STATEMENTS 
+
+ 
+
+Create	 (Tables) 
+
+CREATE TABLE Product ( 
+
+ProductID VARCHAR(20) NOT NULL,  
+
+ProductName VARCHAR(255),  
+
+Price DECIMAL(10,2) NOT NULL,  
+
+CONSTRAINT PK_Product PRIMARY KEY (ProductID)  
+
+); 
+
+CREATE TABLE Invoice ( 
+
+InvoiceID VARCHAR(10) NOT NULL,  
+
+InvoiceDate TIMESTAMP NOT NULL,  
+
+CustomerID VARCHAR(10) NOT NULL,  
+
+Country VARCHAR(100) NOT NULL,  
+
+CONSTRAINT PK_Invoice PRIMARY KEY (InvoiceID) 
+
+);  
+
+CREATE TABLE ProductInvoice ( 
+
+InvoiceID VARCHAR(10) NOT NULL,  
+
+ProductID VARCHAR(20) NOT NULL,  
+
+Quantity INT NOT NULL,  
+
+CONSTRAINT PK_ProductInvoice PRIMARY KEY (InvoiceID, ProductID), 
+
+CONSTRAINT FK_ProductInvoice_Invoice FOREIGN KEY (InvoiceID) REFERENCES Invoice(InvoiceID),  
+
+CONSTRAINT FK_ProductInvoice_Product FOREIGN KEY (ProductID) REFERENCES Product(ProductID)  
+
+); 
+
+ 
+
+Create/Insert	(Rows)  
+
+INSERT INTO Product (ProductID, ProductName, Price)  
+
+VALUES (22423, ‘REGENCY CAKESTAND 3 TIER’, 12.75); 
+
+INSERT INTO Product (ProductID, ProductName, Price)  
+
+VALUES (23020, ‘GLASS  SONGBIRD STORAGE JAR’, 12.5); 
+
+INSERT INTO Product (ProductID, ProductName, Price)  
+
+VALUES (22848, ‘BREAD BIN DINER STYLE PINL’, 16.95); 
+
+INSERT INTO Product (ProductID, ProductName, Price)  
+
+VALUES (23008, ‘DOLLY GIRL BABY GIFT SET’, 16.95); 
+
+INSERT INTO Product (ProductID, ProductName, Price)  
+
+VALUES (23010, ‘CIRCUS PARADE BABY GIFT SET’, 16.95); 
+
+ 
+
+INSERT INTO Invoice (InvoiceID, InvoiceDate, CustomerID, Country)  
+
+VALUES (‘577609’, ‘11/21/11 9:51’, ‘12349’, ‘Italy’); 
+
+INSERT INTO Invoice (InvoiceID, InvoiceDate, CustomerID, Country)  
+
+VALUES (‘550911’, ‘4/21/11 13:11’,	 ‘12354’, ‘Spain’); 
+
+INSERT INTO Invoice (InvoiceID, InvoiceDate, CustomerID, Country)  
+
+VALUES (‘574740’, ‘11/6/11 16:07’, ‘12357’, ‘Switzerland’); 
+
+INSERT INTO Invoice (InvoiceID, InvoiceDate, CustomerID, Country)  
+
+VALUES (‘540946’, ‘1/12/11 12:43’, ‘12359’, ‘Cyprus’); 
+
+INSERT INTO Invoice (InvoiceID, InvoiceDate, CustomerID, Country)  
+
+VALUES (‘543370’, ‘1/12/11 12:43’, ‘12359’, ‘Cyprus’); 
+
+ 
+
+ 
+
+INSERT INTO ProductInvoice (InvoiceID, ProductID, Quantity) 
+
+VALUES ('577609', '22423', 1); 
+
+INSERT INTO ProductInvoice (InvoiceID, ProductID, Quantity) 
+
+VALUES ('577609', '23020', 1); 
+
+INSERT INTO ProductInvoice (InvoiceID, ProductID, Quantity) 
+
+VALUES ('550911', '22848', 1); 
+
+INSERT INTO ProductInvoice (InvoiceID, ProductID, Quantity) 
+
+VALUES ('550911', '23008', 1); 
+
+INSERT INTO ProductInvoice (InvoiceID, ProductID, Quantity) 
+
+VALUES ('550911', '23010', 1); 
+
+ 
+
+Read	 
+
+--Select all columns and all rows of the Product table 
+
+SELECT * FROM Product; 
+
+ 
+
+--Select all columns of the Invoice table for a specific customer 
+
+SELECT * FROM Invoice WHERE CustomerID = '12349'; 
+
+ 
+
+--Select all columns of the ProductInvoice table for a specific invoice 
+
+SELECT * FROM ProcuctInvoice WHERE InvoiceID = '577609'; 
+
+ 
+ 
+
+Update	 
+
+UPDATE ProductInvoice  
+
+SET Quantity = 2  
+
+WHERE InvoiceID = '577609' AND ProductID = '22423';  
+
+ 
+
+--Update the price of a specific product 
+
+UPDATE Product  
+
+SET Price = 12 
+
+WHERE ProductID = '22423'; 
+
+ 
+
+--Update the country on a specific invoice 
+
+UPDATE Invoice  
+
+SET Country = 'USA'  
+
+WHERE InvoiceID = '577609'; 
+
+ 
+
+Delete	 
+
+--Delete an invoice 
+
+--Delete the record from ProductInvoice 
+
+DELETE FROM ProductInvoice 
+
+WHERE InvoiceID = '577609'; 
+
+--Then delete from Invoice 
+
+DELETE FROM Invoice 
+
+WHERE InvoiceID = '577609'; 
+
+ 
+
+--Delete a product from a specific invoice 
+
+DELETE FROM ProductInvoice 
+
+WHERE InvoiceID = 'INV001' AND ProductID = '23010'; 
+
+ 
+
+--Delete a product 
+
+DELETE FROM Product WHERE ProductID = '23010'; 
+
+ 
+
+ 
